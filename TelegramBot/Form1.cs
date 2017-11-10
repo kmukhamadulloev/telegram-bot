@@ -73,12 +73,17 @@ namespace TelegramBot
             addLog($"{message.Chat.Id.ToString()} :: {message.Text}");
             // MessageBox.Show($"{message.Chat.Id.ToString()} :: {message.Text}");
 
-            var replyKeyboard = new ReplyKeyboardMarkup(
+            var replyKeyboard = new ReplyKeyboardMarkup(new[] {
                 new[]
                 {
                     new Telegram.Bot.Types.KeyboardButton("Kill")
+                },
+
+                new[]
+                {
+                    new Telegram.Bot.Types.KeyboardButton("Downloads")
                 }
-            );
+            });
 
             if (message.Chat.Id.ToString() != Properties.Settings.Default.ApiUser)
             {
@@ -91,6 +96,20 @@ namespace TelegramBot
                 await bot.SendTextMessageAsync(
                     message.Chat.Id,
                     @"Kill yourself, faggot",
+                    replyMarkup: replyKeyboard
+                );
+            }
+            else if (message.Text.StartsWith("Downloads") || message.Text.StartsWith("/downloadlist"))
+            {
+                var filter = message.Text.Replace("Downloads", "").Replace("/downloadlist", "").Trim();
+                filter = filter.Length > 0 ? $"*.{filter}" : null;
+
+                var list = Commands.ListDownloads(@"C:\Users\diSQRL\Downloads\", filter);
+
+                await bot.SendTextMessageAsync(
+                    message.Chat.Id,
+                    $"List of shit: ```\n{String.Join("\n", list.ToArray())}\n```",
+                    parseMode: Telegram.Bot.Types.Enums.ParseMode.Markdown,
                     replyMarkup: replyKeyboard
                 );
             }

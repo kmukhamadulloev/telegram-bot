@@ -1,0 +1,3 @@
+﻿downloadlist - list files from downloads directory
+getsaturnftplist - list all from saturn ftp portal
+downloadfromurl - downloads files from url
