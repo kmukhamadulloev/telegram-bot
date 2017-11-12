@@ -1,3 +1,38 @@
-﻿downloadlist - list files from downloads directory
-getsaturnftplist - list all from saturn ftp portal
-downloadfromurl - downloads files from url
+﻿:: Files & Folders ::
+	/show [command] [sub-command] [filename]
+		Upload file(s) to current chat.
+		Commands:
+			-f : file (txt, pdf, docx, xlsx)
+			-v : video (mp4)
+			-p : picture (jpg, png)
+		Sub-Commands:
+			-all : upload all files to current chat
+
+	/delete [filename]
+		Deletes specific file.
+	
+	/cd [path]
+		Set path by default. Default path is programs folder.
+	
+	/dir
+		Shows all files and directories in current path.
+		
+	/mkdir [name]
+		Creates directory in current path.
+		
+	/rmdir [name]
+		Deletes specific directory.
+		
+:: Network &  System ::
+	/task [command]
+		-kill [pid] : Kills specific process by pid
+		-view : Shows all process in computer/server
+	
+	/dfurl [url]
+		Download file from URL
+		
+	/pc_restart
+		Restart computer
+		
+	/pc_shutdown
+		Shutdown computer

@@ -113,6 +113,25 @@ namespace TelegramBot
                     replyMarkup: replyKeyboard
                 );
             }
+            else if (message.Text.StartsWith("/downloadfromurl"))
+            {
+                var filter = message.Text.Replace("/downloadfromurl", "").Trim();
+                if (filter.Length > 0)
+                {
+                    bool result = Commands.DownloadFromURL(filter, @"C:\Users\diSQRL\Downloads\");
+                    await bot.SendTextMessageAsync(
+                        message.Chat.Id,
+                        $"File was downloaded: {result}"
+                    );
+                }
+                else
+                {
+                    await bot.SendTextMessageAsync(
+                        message.Chat.Id,
+                        "Command is incorrect!"
+                    );
+                }
+            }
             else
             {
                 await bot.SendTextMessageAsync(
